@@ -96,7 +96,6 @@ button:hover {
     color: red;
     font-weight: bold;
     animation: blink 1s infinite;
-    margin-left: 10px;
 }
 
 @keyframes blink {
@@ -104,3 +103,4 @@ button:hover {
     50%  { opacity: 0; }
     100% { opacity: 1; }
 }
+

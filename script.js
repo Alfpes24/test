@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const alertIcon = document.getElementById("alert-icon");
     const commissionsBox = document.getElementById("sales-commissions-box");
 
+    // Nascondi l'icona alert all'inizio
+    alertIcon.style.display = "none";
+
     alertIcon.addEventListener("click", () => {
         commissionsBox.style.display = commissionsBox.style.display === "none" ? "block" : "none";
     });
@@ -57,5 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const discountEl = document.getElementById("discount-message");
         discountEl.textContent = `Prezzo scontato disponibile fino al ${dataSconto}`;
         discountEl.style.display = "inline";
+
+        // Mostra il simbolo alert dopo il calcolo
+        alertIcon.style.display = "inline";
     });
 });

@@ -6,7 +6,6 @@ document.getElementById("calculate-btn").addEventListener("click", function () {
     const noa = parseInt(document.getElementById("noa").value) || 0;
     const noaPrice = parseInt(document.getElementById("noa-price").value) || 0;
 
-    // Nuove tabelle da Excel
     const setupFeeTable = [99, 129, 129, 159, 159, 199, 199, 299, 299, 499, 599];
     const pricePerRoomTable = [270, 180, 160, 130, 110, 105, 95, 90, 85, 75, 70];
 
@@ -15,24 +14,34 @@ document.getElementById("calculate-btn").addEventListener("click", function () {
     const monthlyPricePerRoom = pricePerRoomTable[index];
     const monthlyPrice = monthlyPricePerRoom * rooms;
 
-    // Additional locations cost
     const locationsCost = additionalLocations * 99;
-
-    // NOA cost
     const noaTotalPrice = noa * noaPrice;
-
-    // Total monthly price
     const totalMonthlyPrice = monthlyPrice + locationsCost + noaTotalPrice;
 
-    // Sales commission calculation
     const commissionBase = monthlyPrice;
     const commissionCpl = doctors * (cpl === 17 ? 8 : 6);
     const commissionLocations = locationsCost;
     const commissionNoa = noa * noaPrice;
-
     const totalCommission = commissionBase + commissionCpl + commissionLocations + (setupFee / 12) + commissionNoa;
 
+    // Mostra prezzi
     document.getElementById("monthly-price").textContent = `${totalMonthlyPrice.toFixed(2)} €`;
     document.getElementById("setup-fee").textContent = `${setupFee.toFixed(2)} €`;
     document.getElementById("sales-commissions").textContent = `${totalCommission.toFixed(2)} €`;
+
+    // Canone mensile predefinito (25% in più)
+    const defaultMonthlyPrice = totalMonthlyPrice * 1.25;
+    document.getElementById("default-monthly-price").textContent = `${defaultMonthlyPrice.toFixed(2)} €`;
+
+    // Calcolo data scadenza sconto (10 giorni dopo oggi)
+    const oggi = new Date();
+    oggi.setDate(oggi.getDate() + 10);
+    const giorno = String(oggi.getDate()).padStart(2, '0');
+    const mese = String(oggi.getMonth() + 1).padStart(2, '0');
+    const anno = oggi.getFullYear();
+    const dataSconto = `${giorno}/${mese}/${anno}`;
+
+    const discountEl = document.getElementById("discount-message");
+    discountEl.textContent = `Prezzo scontato disponibile fino al ${dataSconto}`;
+    discountEl.style.display = "inline";
 });

@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const alertIcon = document.getElementById("alert-icon");
     const commissionsBox = document.getElementById("sales-commissions-box");
 
-    // Nascondi l'icona alert all'inizio
     alertIcon.style.display = "none";
 
     alertIcon.addEventListener("click", () => {
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const noa = parseInt(document.getElementById("noa").value) || 0;
         const noaPrice = parseInt(document.getElementById("noa-price").value) || 0;
 
-        // Tabelle dei prezzi
         const setupFeeTable = [99, 129, 129, 159, 159, 199, 199, 299, 299, 499, 599];
         const pricePerRoomTable = [270, 180, 160, 130, 110, 105, 95, 90, 85, 75, 70];
 
@@ -26,30 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const monthlyPricePerRoom = pricePerRoomTable[index];
         const monthlyPrice = monthlyPricePerRoom * rooms;
 
-        // Costi aggiuntivi
         const locationsCost = additionalLocations * 99;
         const noaTotalPrice = noa * noaPrice;
 
-        // Prezzo totale mensile
         const totalMonthlyPrice = monthlyPrice + locationsCost + noaTotalPrice;
 
-        // Commissioni
         const commissionBase = monthlyPrice;
         const commissionCpl = doctors * (cpl === 17 ? 8 : 6);
         const commissionLocations = locationsCost;
         const commissionNoa = noa * noaPrice;
         const totalCommission = commissionBase + commissionCpl + commissionLocations + (setupFee / 12) + commissionNoa;
 
-        // Aggiorna i valori sullo schermo
         document.getElementById("monthly-price").textContent = `${totalMonthlyPrice.toFixed(2)} €`;
         document.getElementById("setup-fee").textContent = `${setupFee.toFixed(2)} €`;
         document.getElementById("sales-commissions").textContent = `${totalCommission.toFixed(2)} €`;
 
-        // Canone mensile predefinito (+25%)
         const defaultMonthlyPrice = totalMonthlyPrice * 1.25;
         document.getElementById("default-monthly-price").textContent = `${defaultMonthlyPrice.toFixed(2)} €`;
 
-        // Calcolo data sconto (10 giorni da oggi)
         const oggi = new Date();
         oggi.setDate(oggi.getDate() + 10);
         const giorno = String(oggi.getDate()).padStart(2, '0');
@@ -61,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
         discountEl.textContent = `Prezzo scontato disponibile fino al ${dataSconto}`;
         discountEl.style.display = "inline";
 
-        // Mostra il simbolo alert dopo il calcolo
         alertIcon.style.display = "inline";
     });
 });

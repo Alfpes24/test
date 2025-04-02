@@ -45,7 +45,8 @@ label {
     color: var(--text-primary);
 }
 
-input, select {
+input,
+select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -92,6 +93,18 @@ button:hover {
     color: var(--text-primary);
     font-weight: bold;
 }
+
+.sales-commissions-toggle {
+    margin-top: 10px;
+}
+
+.output-box {
+    padding: 10px;
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-radius: 6px;
+}
+
 .blinking {
     color: red;
     font-weight: bold;
@@ -103,4 +116,3 @@ button:hover {
     50%  { opacity: 0; }
     100% { opacity: 1; }
 }
-
